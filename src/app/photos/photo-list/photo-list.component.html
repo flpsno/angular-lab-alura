@@ -1,3 +1,5 @@
+<!-- <h1 style="background: red" apDarkenOnHover  brightness="5%" >Photos</h1> -->
+
 <app-search (onTyping)="filter = $event" [value]="filter"></app-search>
 
 <app-photos [photos]="photos | filterByDescription: filter"></app-photos>
