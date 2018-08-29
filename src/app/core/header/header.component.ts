@@ -15,7 +15,7 @@ export class HeaderComponent {
     constructor(
         private userService: UserService,
         private router: Router
-    ){
+    ) {
         this.user$ = userService.getUser();
     }
 

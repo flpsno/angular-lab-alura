@@ -20,11 +20,13 @@ export class SignInComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        
+
         this.loginForm = this.formBuilder.group({
             userName: ['', Validators.required],
             password: ['', Validators.required]
         });
+        this.platformDetectorService.isPlatformBrowser && 
+                        this.userNameInput.nativeElement.focus();
     }
 
     login(){
@@ -35,10 +37,10 @@ export class SignInComponent implements OnInit {
             .authenticate(userName, password)
             .subscribe(
                 () => this.router.navigate(['user', userName]), // navigateByUrl('user/' + userName),
-                err => { 
+                err => {
                     console.log(err);
                     this.loginForm.reset();
-                    this.platformDetectorService.isPlatformBrowser && 
+                this.platformDetectorService.isPlatformBrowser && 
                         this.userNameInput.nativeElement.focus();
                     alert('Invalid user name or password');
                 }
