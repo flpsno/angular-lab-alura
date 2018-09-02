@@ -4,7 +4,7 @@ import { Alert, AlertType } from "./alert";
 
 @Component({
     selector: 'app-alert',
-    template: './alert.component.html'
+    templateUrl: './alert.component.html'
 })
 export class AlertComponent {
 
