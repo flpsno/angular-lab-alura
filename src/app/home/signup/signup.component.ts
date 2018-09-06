@@ -10,7 +10,7 @@ import { PlatformDetectorService } from '../../core/platform-detector/platform-d
 
 @Component({
     templateUrl: 'signup.component.html',
-    providers: [ UserNotTakeValidatorService ]
+    providers: [UserNotTakeValidatorService]
 })
 export class SignUpComponent implements OnInit {
 
@@ -46,26 +46,28 @@ export class SignUpComponent implements OnInit {
                 Validators.minLength(2),
                 Validators.maxLength(30)
             ],
-            this.userNotTakenValidatorService.checkUserNameTaken()
-        ],
+                this.userNotTakenValidatorService.checkUserNameTaken()
+            ],
             password: ['', [
                 Validators.required,
                 Validators.minLength(8),
                 Validators.maxLength(14)]]
         });
 
-        this.platformDetectorService.isPlatformBrowser && 
+        this.platformDetectorService.isPlatformBrowser &&
             this.emailInput.nativeElement.focus();
     }
 
     signup() {
 
-        const newUser = this.signupForm.getRawValue() as NewUser;
-        this.signUpService
-            .signup(newUser)
-            .subscribe(() => this.router.navigate(['']),
-            err => console.log(err)
+        if (this.signupForm.valid && !this.signupForm.pending) {
+            const newUser = this.signupForm.getRawValue() as NewUser;
+            this.signUpService
+                .signup(newUser)
+                .subscribe(() => this.router.navigate(['']),
+                    err => console.log(err)
 
-        );
+                );
+        }
     }
 }

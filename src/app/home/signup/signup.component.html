@@ -1,33 +1,33 @@
 <h4 class="text-ceter">Register to embrace a new World!</h4>
 
-<form [formGroup]="signupForm" class="form mt-4" (submit)="signup()">
+<form #form="ngForm" [formGroup]="signupForm" class="form mt-4" (submit)="signup()">
     <div class="form-group">
         <input #emailInput formControlName="email" class="form-control" placeholder="email" autofocus>
-        <app-vmessage *ngIf="signupForm.get('email').errors?.required" text="Email is required!">
+        <app-vmessage *ngIf="signupForm.get('email').errors?.required && form.submitted" text="Email is required!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('email').errors?.email" text="Invalid e-mail!">
+        <app-vmessage *ngIf="signupForm.get('email').errors?.email && form.submitted" text="Invalid e-mail!">
         </app-vmessage>
     </div>
 
     <div class="form-group">
         <input formControlName="fullName" class="form-control" placeholder="full name">
-        <app-vmessage *ngIf="signupForm.get('fullName').errors?.required" text="Full name is required!">
+        <app-vmessage *ngIf="signupForm.get('fullName').errors?.required && form.submitted" text="Full name is required!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('fullName').errors?.minlength" text="Minmum length is 2!">
+        <app-vmessage *ngIf="signupForm.get('fullName').errors?.minlength && form.submitted" text="Minmum length is 2!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('fullName').errors?.maxlength" text="Maximum length is 40!">
+        <app-vmessage *ngIf="signupForm.get('fullName').errors?.maxlength && form.submitted" text="Maximum length is 40!">
         </app-vmessage>
     </div>
 
     <div class="form-group">
         <input formControlName="userName" class="form-control" placeholder="user name">
-        <app-vmessage *ngIf="signupForm.get('userName').errors?.required" text="User name name is required!">
+        <app-vmessage *ngIf="signupForm.get('userName').errors?.required && form.submitted" text="User name name is required!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('userName').errors?.minlength" text="Minmum length is 2!">
+        <app-vmessage *ngIf="signupForm.get('userName').errors?.minlength && form.submitted" text="Minmum length is 2!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('userName').errors?.maxlength" text="Maximum length is 30!">
+        <app-vmessage *ngIf="signupForm.get('userName').errors?.maxlength && form.submitted" text="Maximum length is 30!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('userName').errors?.lowerCase" text="Must be lowercase!">
+        <app-vmessage *ngIf="signupForm.get('userName').errors?.lowerCase && form.submitted" text="Must be lowercase!">
         </app-vmessage>
         <app-vmessage *ngIf="signupForm.get('userName').errors?.userNameTaken" text="User name already taken!">
         </app-vmessage>
@@ -36,15 +36,15 @@
 
     <div class="form-group">
         <input formControlName="password" type="password" class="form-control" placeholder="password" autofocus>
-        <app-vmessage *ngIf="signupForm.get('password').errors?.required" text="Password is required!">
+        <app-vmessage *ngIf="signupForm.get('password').errors?.required && form.submitted" text="Password is required!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('password').errors?.minlength" text="Minmum length is 8!">
+        <app-vmessage *ngIf="signupForm.get('password').errors?.minlength && form.submitted" text="Minmum length is 8!">
         </app-vmessage>
-        <app-vmessage *ngIf="signupForm.get('password').errors?.maxlength" text="Maximum length is 14!">
+        <app-vmessage *ngIf="signupForm.get('password').errors?.maxlength && form.submitted" text="Maximum length is 14!">
         </app-vmessage>
     </div>
 
-    <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-primary btn-block">Register</button>
+    <button  class="btn btn-primary btn-block">Register</button>
 
     <p>Aready a user? <a [routerLink]="['']">Sign In!</a></p>
 </form>
