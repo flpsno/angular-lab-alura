@@ -8,6 +8,7 @@ import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 import { LoginGuard } from './core/auth/login.guard';
 import { PhotoDetailsComponent } from './photos/photo-details/photo-details.component';
 import { AuthGuard } from './core/auth/auth.guard';
+import { GlobalErrorComponent } from './errors/global-error/global-error.component';
 
 const routes: Routes = [
     {
@@ -49,6 +50,13 @@ const routes: Routes = [
         component: NotFoundComponent,
         data: {
             title: 'Not found'
+        }
+    },
+    {
+        path: 'error',
+        component: GlobalErrorComponent,
+        data: {
+            title: 'Error'
         }
     },
     { path: '**', redirectTo: 'not-found' }
